@@ -1,0 +1,32 @@
+data:
+  class_path: anomalib.data.Folder
+  init_args:
+    name: "dummy"
+    root: "datasets/dummy"
+    normal_dir: "train/good" #unused for testing
+    normal_test_dir: "test/good"
+    abnormal_dir: "test/anomaly"
+    task: "classification"
+    eval_batch_size: 1
+    normal_split_ratio: 0.0 #unused for testing
+    val_split_mode: "same_as_test" #unused for testing
+    test_split_ratio: 0.0 #unused for testing
+
+model:
+  class_path: anomalib.models.EfficientAd
+  init_args:
+    teacher_out_channels: 384
+    model_size: S
+    lr: 0.0001
+    weight_decay: 1.0e-05
+    padding: false
+    pad_maps: true
+
+task: classification
+
+metrics:
+  image:
+    - AUROC
+    - F1Score
+    - AUPR
+
